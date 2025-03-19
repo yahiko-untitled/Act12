@@ -2,64 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Superheroe;
 use Illuminate\Http\Request;
+use App\Models\Superheroe;
 
 class SuperheroeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $superheroes = Superheroe::all();
+        return view('superheroes.index', compact('superheroes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('superheroes.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        Superheroe::create($request->all());
+        return redirect()->route('superheroes.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Superheroe $superheroe)
     {
-        //
+        return view('superheroes.show', compact('superheroe'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Superheroe $superheroe)
     {
-        //
+        return view('superheroes.edit', compact('superheroe'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Superheroe $superheroe)
     {
-        //
+        $superheroe->update($request->all());
+        return redirect()->route('superheroes.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Superheroe $superheroe)
     {
-        //
+        $superheroe->delete();
+        return redirect()->route('superheroes.index');
     }
 }
