@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Superheroe extends Model
 {
-    use HasFactory;
+    use SoftDeletes; // Habilita borrado suave
 
-    protected $fillable = ['nombre_real', 'nombre_superheroe', 'foto_url', 'informacion_adicional'];
+    protected $fillable = ['real_name', 'hero_name', 'photo', 'additional_info'];
 }
